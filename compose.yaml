@@ -1,0 +1,15 @@
+services:
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
+    environment:
+      HOST: 0.0.0.0
+      PORT: 3000
+      LOCAL_KNOWLEDGE_DIR: /knowledge
+    volumes:
+      - ./data:/app/data
+      - ${KNOWLEDGE_HOST_DIR:-../任德耀新建华为PC知识库/华为PC全板块深度知识库_v7}:/knowledge:ro
+    restart: unless-stopped

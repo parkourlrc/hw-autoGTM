@@ -1,0 +1,9 @@
+{
+  "name": "hw-autogtm",
+  "version": "0.1.0",
+  "private": true,
+  "description": "AI + Huawei PC marketing copy MVP with evidence gates",
+  "main": "src/server.js",
+  "scripts": {"start": "node src/server.js", "check": "node --check src/server.js && node --check src/ima-adapter.js && node --check src/knowledge.js && node --check test/smoke.test.js", "test": "node --test"},
+  "engines": {"node": ">=22.16"}
+}
