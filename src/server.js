@@ -105,7 +105,8 @@ function persist(result) { const dir = process.env.DATA_DIR || path.join(ROOT, '
 function json(res, status, data) { res.writeHead(status, { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' }); res.end(JSON.stringify(data)); }
 async function body(req) { let text = ''; for await (const chunk of req) { text += chunk; if (Buffer.byteLength(text) > 20000) throw new Error('请求过大'); } return JSON.parse(text || '{}'); }
 const server = http.createServer(async (req, res) => {
-  res.setHeader('X-Content-Type-Options', 'nosniff'); res.setHeader('X-Frame-Options', 'DENY');
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('Content-Security-Policy', "frame-ancestors 'self' https://modelscope.cn https://www.modelscope.cn https://*.ms.show");
   const url = new URL(req.url, 'http://localhost');
   try {
     if (req.method === 'GET' && url.pathname === '/api/health') return json(res, 200, { ok: true, version: VERSION });
